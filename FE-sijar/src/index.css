@@ -1,111 +1,189 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
-
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
-
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-
-  @media (max-width: 1024px) {
-    font-size: 16px;
-  }
-}
-
-@media (prefers-color-scheme: dark) {
+@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+  
   :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
-  }
+            --blue-primary:   #3B9EE8;   /* bright soft blue – main brand color   */
+            --blue-light:     #74BFEF;   /* lighter blue – accents / badges        */
+            --blue-lighter:   #C3E2FA;   /* very light blue – backgrounds / chips  */
+            --blue-dark:      #1A6FAF;   /* deep blue – hover, headings            */
+            --blue-darker:    #0E4A7A;   /* darkest blue – footer / text           */
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
-  }
-}
+            --sky:            #E8F5FF;   /* near-white sky – page background       */
+            --white:          #FFFFFF;
+            --text-main:      #1E3A5F;   /* navy text                              */
+            --text-muted:     #5A85AD;   /* muted body copy                        */
 
-body {
-  margin: 0;
-}
+            --green-soft:     #4ECBA0;   /* success / tujuan accent                */
+            --yellow-soft:    #FFD166;   /* highlight accent                       */
+            --coral-soft:     #FF8C6B;   /* warning / hot accent                   */
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
+            --radius-card:    1.25rem;
+            --shadow-card:    0 4px 24px rgba(59,158,232,.12);
+            --shadow-hover:   0 8px 36px rgba(59,158,232,.22);
+        }
 
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
+        html { scroll-behavior: smooth; }
 
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
-  }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
-  }
-}
-p {
-  margin: 0;
-}
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--sky);
+            color: var(--text-main);
+        }
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+        h1, h2, h3, h4, h5 { font-family: 'Plus Jakarta Sans', sans-serif; }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
-}
+        /* ─── Navbar ─────────────────────────────────────────── */
+        .navbar {
+            background: rgba(255,255,255,0.82);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(59,158,232,0.12);
+        }
+
+        .nav-link {
+            position: relative;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color .25s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -2px; left: 0; right: 0;
+            height: 2px;
+            background: var(--blue-primary);
+            border-radius: 2px;
+            transform: scaleX(0);
+            transition: transform .25s;
+        }
+        .nav-link:hover { color: var(--blue-primary); }
+        .nav-link:hover::after { transform: scaleX(1); }
+
+        /* ─── Hero dashed ring background ─────────────────────── */
+        .hero-bg {
+            position: relative;
+            overflow: hidden;
+        }
+        .ring {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px dashed;
+            opacity: .18;
+            pointer-events: none;
+        }
+        .ring-1 { width: 520px; height: 520px; top: -120px; left: -140px; border-color: var(--blue-primary); }
+        .ring-2 { width: 380px; height: 380px; top: 40px;  left: -60px;  border-color: var(--blue-light); }
+        .ring-3 { width: 700px; height: 700px; top: -200px; right:-220px; border-color: var(--blue-primary); }
+        .ring-4 { width: 480px; height: 480px; top:  0px;   right:-80px;  border-color: var(--blue-light);  animation: spin-slow 40s linear infinite; }
+        @keyframes spin-slow { to { transform: rotate(360deg); } }
+
+        /* ─── Cards ──────────────────────────────────────────── */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-card);
+            transition: box-shadow .3s, transform .3s;
+        }
+        .card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+
+        /* ─── Jurusan badge ──────────────────────────────────── */
+        .jurusan-card {
+            background: var(--white);
+            border-radius: var(--radius-card);
+            border: 1.5px solid var(--blue-lighter);
+            box-shadow: var(--shadow-card);
+            transition: all .3s;
+        }
+        .jurusan-card:hover {
+            background: var(--blue-primary);
+            color: #fff;
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-4px);
+        }
+        .jurusan-card:hover .jurusan-icon { background: rgba(255,255,255,.2); color: #fff; }
+        .jurusan-card:hover p { color: rgba(255,255,255,.85); }
+
+        /* ─── Section label chip ─────────────────────────────── */
+        .section-chip {
+            display: inline-flex;
+            align-items: center;
+            gap: .4rem;
+            background: var(--blue-lighter);
+            color: var(--blue-dark);
+            font-size: .78rem;
+            font-weight: 700;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+            padding: .3rem .85rem;
+            border-radius: 9999px;
+            margin-bottom: .85rem;
+        }
+
+        /* ─── Btn primary ────────────────────────────────────── */
+        .btn-primary {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: var(--sky);
+            color: var(--blue-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: .95rem;
+            padding: .75rem 2rem;
+            border-radius:12px;
+            box-shadow: 0 4px 18px rgba(59,158,232,.35);
+            transition: all .25s;
+        }
+        .btn-primary:hover {
+            background: var(--blue-primary);
+            color: #fff;
+            text-decoration: underline;
+            box-shadow: 0 6px 24px rgba(59,158,232,.45);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-flex;
+            align-items: center;
+            gap: .5rem;
+            background: transparent;
+            color: var(--blue-primary);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            font-weight: 700;
+            font-size: .9rem;
+            padding: .6rem 1.5rem;
+            border-radius: 9999px;
+            border: 2px solid var(--blue-light);
+            transition: all .25s;
+        }
+        .btn-outline:hover {
+            background: var(--blue-lighter);
+            border-color: var(--blue-primary);
+        }
+
+        /* ─── Divider wave ───────────────────────────────────── */
+        .wave-divider { line-height: 0; }
+        .wave-divider svg { display: block; width: 100%; }
+
+        /* ─── Scroll reveal (no JS needed – CSS fade on load) ── */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(28px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { animation: fadeUp .7s ease both; }
+        .delay-1 { animation-delay: .1s; }
+        .delay-2 { animation-delay: .2s; }
+        .delay-3 { animation-delay: .3s; }
+        .delay-4 { animation-delay: .45s; }
+
+        /* footer link */
+        .footer-link { color: var(--blue-light); transition: color .2s; }
+        .footer-link:hover { color: #fff; }
+
+        /* Mobile nav toggle */
+        #mobile-menu { transition: max-height .35s ease, opacity .35s ease; }
