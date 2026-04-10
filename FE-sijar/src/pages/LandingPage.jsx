@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import heroPeminjaman from '../assets/hero_peminjaman.png'
 import logoPeminjaman from '../assets/logo.png'
+import LoginPage from '../pages/LoginPages'
+import { Link } from 'react-router-dom';
+import SijarLogin from "../pages/LoginPages";
  
 const COLORS = {
   bluePrimary: "#4A90D9",
@@ -231,6 +234,7 @@ function Navbar() {
   const [open, setOpen] = useState(false);
   const links = ["Beranda", "Tentang", "Jurusan", "Barang", "Kontak"];
   return (
+
     <nav className="navbar">
       <div className="nav-inner">
         <a href="#home" style={{ display: "flex", alignItems: "center", gap: ".5rem", textDecoration: "none" }}>
@@ -247,10 +251,12 @@ function Navbar() {
         </div>
  
         <div style={{ display: "flex", alignItems: "center", gap: ".75rem" }}>
-          <a href="#home" className="btn-primary hide-md" style={{ display: "inline-flex" }}>
+          <Link to="/login">
+          <a className="btn-primary hide-md" style={{ display: "inline-flex" }}>
             <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2.2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 3h4a2 2 0 012 2v14a2 2 0 01-2 2h-4m-5-4l5-5-5-5m5 5H3"/></svg>
             Login
           </a>
+          </Link>
           <button className="show-md" onClick={() => setOpen(!open)} style={{ border: "none", background: "transparent", cursor: "pointer", color: "var(--blue)", padding: ".4rem" }}>
             <svg width="22" height="22" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
               {open ? <path strokeLinecap="round" strokeLinejoin="round" d="M6 18L18 6M6 6l12 12"/> : <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16M4 12h16M4 18h16"/>}
@@ -263,11 +269,12 @@ function Navbar() {
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: ".5rem 0" }}>
           <div style={{ background: "#fff", borderRadius: 16, padding: "1rem", boxShadow: "0 4px 20px rgba(74,144,217,.12)", display: "flex", flexDirection: "column", gap: ".6rem" }}>
             {links.map(l => <a key={l} href={`#${l.toLowerCase()}`} className="nav-link" onClick={() => setOpen(false)} style={{ padding: ".35rem 0" }}>{l}</a>)}
-            <a href="#home" className="btn-primary" style={{ justifyContent: "center", marginTop: ".25rem" }}>Login</a>
+            <a href="/login" className="btn-primary" style={{ justifyContent: "center", marginTop: ".25rem" }}>Login</a>
           </div>
         </div>
       )}
     </nav>
+   
   );
 }
 
@@ -532,7 +539,9 @@ function Footer() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "2.5rem", marginBottom: "2rem" }}>
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: ".5rem", marginBottom: "1rem" }}>
-              <div style={{ width: 34, height: 34, borderRadius: 9, background: "rgba(255,255,255,.12)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>📦</div>
+              <div style={{ width: 34, height: 34, borderRadius: 9, background: "rgba(255,255,255,.12)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 18 }}>
+                <img src={logoPeminjaman} alt="logo sijar" style={{ width : 46, height : 46, objectFit : "cover" }} />
+              </div>
               <span style={{ fontFamily: "'Plus Jakarta Sans'", fontWeight: 800, color: "#fff", fontSize: "1.1rem" }}>SIJAR</span>
             </div>
             <p style={{ fontSize: ".85rem", color: "var(--blue-lt)", lineHeight: 1.7 }}>
