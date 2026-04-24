@@ -11,6 +11,15 @@ import logoTJKT from '../../public/tjkt.png'
 import logoLK from '../../public/lk1.png'
 import logoPS from '../../public/ps.png'
 import logoDKV from '../../public/dkv.png'
+import goalist from '../assets/list.png'
+import done from '../assets/done.png'
+import note from '../assets/note.png'
+import clock from '../assets/clock.png'
+import clipboard from '../assets/clipboard.png'
+import instagram from '../assets/instagram.png'
+import whatsapp from '../assets/whatsapp.png'
+import gmail from '../assets/gmail.png'
+import youtube from '../assets/youtube.png'
  
 const COLORS = {
   bluePrimary: "#4A90D9",
@@ -352,10 +361,11 @@ function Tentang() {
     "Guru dan admin dapat memantau stok barang secara langsung",
   ];
   const features = [
-    { title: "Pencatatan Digital", desc: "Semua transaksi tercatat otomatis tanpa kertas.", bg: "var(--blue-ltr)", ic: "var(--blue)", emoji: "📝" },
-    { title: "Pantau Real-time",   desc: "Status barang bisa dipantau kapan saja.",          bg: "#FEF9EC",         ic: "#C4973A",  emoji: "⏱" },
-    { title: "Laporan Lengkap",    desc: "Ekspor laporan inventaris bulanan dengan mudah.",   bg: "#EAF7F0",         ic: "#2A9D6E",  emoji: "📊" },
+    { title: "Pencatatan Digital", desc: "Semua transaksi tercatat otomatis tanpa kertas.", bg: "var(--blue-ltr)", ic: "var(--blue)", icon:note },
+    { title: "Pantau Real-time",   desc: "Status barang bisa dipantau kapan saja.",          bg: "#FEF9EC",         ic: "#C4973A",  icon:clock },
+    { title: "Laporan Lengkap",    desc: "Ekspor laporan inventaris bulanan dengan mudah.",   bg: "#EAF7F0",         ic: "#2A9D6E",  icon:clipboard },
   ];
+  
  
   return (
     <section id="tentang" style={{ padding: "5rem 1.5rem", background: "var(--white)" }}>
@@ -372,12 +382,12 @@ function Tentang() {
         </FadeSection>
  
         <div className="features-grid" style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "1.5rem", marginBottom: "1.5rem" }}>
-          {[["Tujuan Sistem", "var(--blue-ltr)", "var(--blue)", tujuan, "🎯"],
-            ["Manfaat untuk Kamu", "#EAF7F0", "#2A9D6E", manfaat, "✅"]].map(([title, bg, ic, items, emoji], i) => (
+          {[["Tujuan Sistem", "var(--blue-ltr)", "var(--blue)", tujuan, goalist],
+            ["Manfaat untuk Kamu", "#EAF7F0", "#2A9D6E", manfaat, done]].map(([title, bg, ic, items, emoji], i) => (
             <FadeSection key={title} delay={i * 100}>
               <div className="card" style={{ padding: "1.75rem" }}>
                 <div style={{ display: "flex", alignItems: "center", gap: ".75rem", marginBottom: "1.25rem" }}>
-                  <div style={{ width: 44, height: 44, borderRadius: 14, background: bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}>{emoji}</div>
+                  <div style={{ width: 44, height: 44, borderRadius: 14, background: bg, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 22 }}> <img src={emoji} alt="" style={{ width: 24, height: 24 }} /></div>
                   <h3 style={{ fontWeight: 700, fontSize: "1.05rem", color: "var(--blue-dkr)" }}>{title}</h3>
                 </div>
                 <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: ".65rem" }}>
@@ -399,7 +409,9 @@ function Tentang() {
           {features.map((f, i) => (
             <FadeSection key={f.title} delay={i * 90}>
               <div className="card" style={{ padding: "1.5rem", textAlign: "center" }}>
-                <div style={{ width: 48, height: 48, borderRadius: 14, background: f.bg, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto .85rem", fontSize: 24 }}>{f.emoji}</div>
+                <div style={{ width: 48, height: 48, borderRadius: 14, background: f.bg, display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto .85rem", fontSize: 24 }}>
+                  <img src={f.icon} alt="" style={{ width: 24, height: 24 }} />
+                </div>
                 <h4 style={{ fontWeight: 700, fontSize: ".875rem", color: "var(--blue-dkr)", marginBottom: ".3rem" }}>{f.title}</h4>
                 <p style={{ fontSize: ".8rem", color: "var(--tx-m)", lineHeight: 1.6 }}>{f.desc}</p>
               </div>
@@ -542,10 +554,10 @@ function Barang() {
  
 function Kontak() {
   const contacts = [
-    { label: "@sijar_smkn8",             href: "#",                                  bg: "#FDE8F2", icon: "📸" },
-    { label: "WhatsApp",                  href: "https://wa.me/6281234567890",         bg: "#E6F9EE", icon: "💬" },
-    { label: "Email Kami",                href: "mailto:sijar@smkn8semarang.sch.id",   bg: "var(--blue-ltr)", icon: "📧" },
-    { label: "YouTube",                   href: "#",                                  bg: "#FFEBEB", icon: "▶️" },
+    { label: "@sijar_smkn8",             href: "#",                                  bg: "#FDE8F2", icon:instagram },
+    { label: "WhatsApp",                  href: "https://wa.me/6281234567890",         bg: "#E6F9EE", icon:whatsapp },
+    { label: "Email Kami",                href: "mailto:sijar@smkn8semarang.sch.id",   bg: "var(--blue-ltr)", icon: gmail },
+    { label: "YouTube",                   href: "#",                                  bg: "#FFEBEB", icon: youtube },
   ];
   return (
     <section id="kontak" style={{ padding: "5rem 1.5rem", background: "var(--sky)" }}>
@@ -563,7 +575,7 @@ function Kontak() {
           <div className="contact-wrap" style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "1rem" }}>
             {contacts.map(c => (
               <a key={c.label} href={c.href} className="contact-card">
-                <div className="contact-icon" style={{ background: c.bg, fontSize: 20 }}>{c.icon}</div>
+                <div className="contact-icon" style={{ background: c.bg, fontSize: 20 }}><img src={c.icon} alt={c.label} height={24} width={24} /></div>
                 <span style={{ fontWeight: 600, fontSize: ".875rem", color: "var(--tx)" }}>{c.label}</span>
               </a>
             ))}
