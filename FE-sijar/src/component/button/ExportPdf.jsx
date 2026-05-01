@@ -46,7 +46,7 @@ function ExportPDFButton({ filters, label, className, onSuccess, onError }) {
         />
       ) : (
         <>
-          <span>📊</span> {label || 'Export PDF'}
+          <img src={iconPdf} alt="PDF Icon" height={24} width={24} /> {label || 'Export PDF'}
         </>
       )}
     </button>

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { downloadExcel } from '../../services/laporanService';
 import iconLoading from '../../assets/loading_gray.json';
 import { Player } from '@lottiefiles/react-lottie-player';
-import iconPdf from '../../assets/sheets.png';
+import iconExcel from '../../assets/sheets.png';
 function ExportExcelButton({ filters, label, className, onSuccess, onError }) {
   const [loading, setLoading] = useState(false);
 
@@ -46,7 +46,7 @@ function ExportExcelButton({ filters, label, className, onSuccess, onError }) {
         />
       ) : (
         <>
-          <span>📊</span> {label || 'Export Excel'}
+          <img src={iconExcel} alt="Excel Icon" height={24} width={24} /> {label || 'Export Excel'}
         </>
       )}
     </button>

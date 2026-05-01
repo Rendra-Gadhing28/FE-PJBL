@@ -20,6 +20,7 @@ import instagram from '../assets/instagram.png'
 import whatsapp from '../assets/whatsapp.png'
 import gmail from '../assets/gmail.png'
 import youtube from '../assets/youtube.png'
+import { Player } from "@lottiefiles/react-lottie-player";
  
 const COLORS = {
   bluePrimary: "#4A90D9",
@@ -427,8 +428,9 @@ function JurusanData() {
   const [jurusanList, setJurusanList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(null)
+  const API_URL = 'http://localhost:8000';
    useEffect(()=>{
-    axios.get('/landing')
+    axios.get(`${API_URL}/api/test/landing`)
     .then(res => {
       console.log(res.data);
       const data = res.data.data;
@@ -464,7 +466,10 @@ function JurusanData() {
           {jurusanList.map((j, i) => (
             <FadeSection key={j.nama_kategori} delay={i * 70}>
               <div className="jurusan-card">
-                <div className="j-icon" style={{ fontSize: 22 }}>{j.icon}</div>
+              <div className="j-icon" style={{ fontSize: 22 }}><img src={`${API_URL}/storage/${j.kategori_jurusan.icon}`} alt={j.nama_kategori} onError={(e)=>{
+                console.error("Gagal load gambar :", e.target.src);
+                e.target.src = "https://via.placeholder.com/48?text=No+Img";
+              }} /></div>
                 <h3 className="j-title" style={{ fontWeight: 800, fontSize: "1.05rem", color: "var(--blue-dkr)", marginBottom: ".3rem" }}>{j.nama_kategori}</h3>
               </div>
             </FadeSection>
@@ -482,7 +487,7 @@ function Barang() {
   const [err, setErr] = useState(null)
 
   useEffect(()=>{
-    axios.get('/landing')
+    axios.get(`${API_URL}/api/test/landing`)
     .then(res => {
       const data = res.data.data;
       setdataBarang(data.barang);
@@ -498,7 +503,7 @@ function Barang() {
     });
   }, []);
 
-  if(loading) return <p>Loading...</p>;
+  if(loading) return <Player autoplay loop src={loading} style={{ width: 120, margin: "0 auto" }} />;
   if(err) return <p>Error: {err}</p>;
   return (
     <section id="barang" style={{ padding: "5rem 1.5rem", background: "var(--white)" }}>
