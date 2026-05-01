@@ -8,6 +8,15 @@ import InventarisPage from "./pages/InventarisPage";
 import JurusanPage from "./pages/JurusanPage";
 import ProfilePage from "./pages/ProfilePage";
 import SettingsPage from "./pages/SettingsPage";
+// ADMIN
+import AdminDashboard from "./admin/AdminDashboard";
+import AdminInventaris from "./admin/AdminInventaris";
+import AdminJurusan from "./admin/AdminJurusan";
+import AdminLaporan from "./admin/AdminLaporan";
+import AdminLayout from "./admin/Adminlayout";
+import AdminPeminjaman from "./admin/AdminPeminjaman";
+import AdminSetting from "./admin/AdminSetting";
+import AdminSiswa from "./admin/AdminSiswa";
 
 export default function App() {
   return (
@@ -27,6 +36,18 @@ export default function App() {
         <Route path="/dashboard/jurusan" element={<JurusanPage />} />
         <Route path="/dashboard/profile" element={<ProfilePage />} />
         <Route path="/dashboard/settings" element={<SettingsPage />} />
+
+
+        {/* ADMIN ROUTES */}
+<Route path="/admin" element={<AdminLayout />}>
+  <Route index element={<AdminDashboard />} />
+  <Route path="inventaris" element={<AdminInventaris />} />
+  <Route path="jurusan" element={<AdminJurusan />} />
+  <Route path="laporan" element={<AdminLaporan />} />
+  <Route path="peminjaman" element={<AdminPeminjaman />} />
+  <Route path="settings" element={<AdminSetting />} />
+  <Route path="siswa" element={<AdminSiswa />} />
+</Route>
 
         {/* Fallback */}
         <Route path="*" element={<Navigate to="/" replace />} />
